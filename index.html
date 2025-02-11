@@ -3,8 +3,98 @@
 <head>
     <title>POSGRADOS DE INGENIERÍA 1252</title>
     <style>
-        /* ... (Your existing CSS styles) ... */
-    </style>
+/* Estilos generales */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 900px;
+        }
+
+        /* Estilos de la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            background-color: #fff;
+        }
+
+        th {
+            background-color: #f8f8f8;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Estilos para el mensaje de "no se encontraron resultados" */
+        #resultado p {
+            text-align: center;
+            color: #999;
+            margin-top: 0;
+        }
+
+        /* Estilos para el input y el botón */
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 60%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Estilos para la info de columnas */
+        #infoColumnas {
+            display: flex;
+            gap: 10px; /* Espacio entre los elementos */
+            margin-bottom: 10px; /* Margen inferior */
+        }
+
+        #infoColumnas span {
+            padding: 5px 10px; /* Padding para los elementos */
+            background-color: #f0f0f0; /* Color de fondo */
+            border-radius: 5px; /* Bordes redondeados */
+        }    </style>
 </head>
 
 <body>
