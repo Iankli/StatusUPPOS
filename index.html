@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>POSGRADOS DE INGENIERÍA 1252</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            width: 80%;
+            max-width: 900px;
+        }
+
+        /* Estilos de la tabla */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+            background-color: #fff;
+        }
+
+        th {
+            background-color: #f8f8f8;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Estilos para el mensaje de "no se encontraron resultados" */
+        #resultado p {
+            text-align: center;
+            color: #999;
+            margin-top: 0;
+        }
+
+        /* Estilos para el input y el botón */
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 60%;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Estilos para la info de columnas */
+        #infoColumnas {
+            display: flex;
+            gap: 10px; /* Espacio entre los elementos */
+            margin-bottom: 10px; /* Margen inferior */
+        }
+
+        #infoColumnas span {
+            padding: 5px 10px; /* Padding para los elementos */
+            background-color: #f0f0f0; /* Color de fondo */
+            border-radius: 5px; /* Bordes redondeados */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Status Requisitos alumnos 4+1</h1>
+    <input type="text" id="idInput" placeholder="Ingresa el ID">
+    <button onclick="buscarID()" style="margin-top:3%; margin-bottom:3%;">Buscar</button>
+
+    <div id="infoColumnas"></div>
+    <div id="resultado"></div>
+
+    <script>
+        function buscarID() {
+            const idInput = document.getElementById('idInput').value;
+            const resultadoDiv = document.getElementById('resultado');
+            const infoColumnasDiv = document.getElementById('infoColumnas');
+
+            resultadoDiv.innerHTML = ''; // Limpia los resultados anteriores
+            infoColumnasDiv.innerHTML = ''; // Limpia la info de columnas anterior
+
+            const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQme6n6jncAPfDZiEyOW8zEbyiRCWioQv49ZcHGVfLI8ZgNbiniEINrzgRtZ7YJXg/pubhtml?gid=1917080272&single=true';
+
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const tabla = doc.querySelector('table');
+
+                    if (tabla) {
+                        let resultadosEncontrados = false;
+                        let infoColumnasMostrada = false;
+
+                        tabla.querySelectorAll('tr').forEach((fila, rowIndex) => {
+                            if (rowIndex > 0) {
+                                const celdas = fila.querySelectorAll('td, th');
+                                if (celdas.length > 5) {
+                                    const idColumnaA = celdas[1].textContent;
+
+                                    if (idInput === idColumnaA) {
+                                        resultadosEncontrados = true;
+
+                                        if (!infoColumnasMostrada) {                                         
+                                            const infoColumna2 = document.createElement('span');
+                                            infoColumna2.textContent = celdas[2].textContent;
+                                            infoColumnasDiv.appendChild(infoColumna2);
+
+                                            const infoColumna3 = document.createElement('span');
+                                            infoColumna3.textContent = celdas[3].textContent;
+                                            infoColumnasDiv.appendChild(infoColumna3);
+
+                                            infoColumnasMostrada = true;
+                                        }
+
+                                        if (!resultadoDiv.querySelector('table')) {
+                                            const nuevaTabla = document.createElement('table');
+                                            resultadoDiv.appendChild(nuevaTabla);
+                                        }
+
+                                        const nuevaFila = resultadoDiv.querySelector('table').insertRow();
+
+                                        const celdaColumna4 = nuevaFila.insertCell();
+                                        celdaColumna4.textContent = "Servicio Socoal: "+celdas[4].textContent;
+
+                                        const celdaColumna5 = nuevaFila.insertCell();
+                                        celdaColumna5.textContent = "Eventos de EPA: "+celdas[5].textContent;
+                                        
+                                        const celdaColumna6 = nuevaFila.insertCell();
+                                        celdaColumna5.textContent = "Inglés: "+celdas[9].textContent;
+
+                                        const celdaColumna7 = nuevaFila.insertCell();
+                                        celdaColumna4.textContent = "EPA: "+celdas[9].textContent;
+
+                                        const celdaColumna8 = nuevaFila.insertCell();
+                                        celdaColumna5.textContent = "Servicio Social: "+celdas[10].textContent;
+                                        
+                                    }
+                                }
+                            }
+                        });
+
+                        if (!resultadosEncontrados) {
+                            resultadoDiv.innerHTML = '<p>No se encontraron resultados para el ID ingresado.</p>';
+                        }
+
+                    } else {
+                        resultadoDiv.textContent = 'No se encontró la tabla en la hoja de cálculo.';
+                    }
+                })
+                .catch(error => {
+                    resultadoDiv.textContent = 'Error al cargar la hoja de cálculo: ' + error;
+                });
+        }
+    </script>
+</body>
+
+</html>
