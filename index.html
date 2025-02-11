@@ -3,7 +3,7 @@
 <head>
     <title>POSGRADOS DE INGENIERÍA 1252</title>
     <style>
-/* Estilos generales */
+        /* Estilos generales */
         body {
             font-family: sans-serif;
             display: flex;
@@ -94,11 +94,12 @@
             padding: 5px 10px; /* Padding para los elementos */
             background-color: #f0f0f0; /* Color de fondo */
             border-radius: 5px; /* Bordes redondeados */
-        }    </style>
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Estatus Requisitos alumnos 4+1</h1>
+    <h1>Status Requisitos alumnos 4+1</h1>
     <input type="text" id="idInput" placeholder="Ingresa el ID">
     <button onclick="buscarID()" style="margin-top:3%; margin-bottom:3%;">Buscar</button>
 
@@ -107,74 +108,92 @@
 
     <script>
         function buscarID() {
-            // ... (Your existing code for fetching and parsing the HTML) ...
+            const idInput = document.getElementById('idInput').value;
+            const resultadoDiv = document.getElementById('resultado');
+            const infoColumnasDiv = document.getElementById('infoColumnas');
 
-            if (tabla) {
-                let resultadosEncontrados = false;
-                let infoColumnasMostrada = false;
+            resultadoDiv.innerHTML = '';
+            infoColumnasDiv.innerHTML = '';
 
-                tabla.querySelectorAll('tr').forEach((fila, rowIndex) => {
-                    if (rowIndex > 0) {
-                        const celdas = fila.querySelectorAll('td, th');
-                        if (celdas.length > 5) {
-                            const idColumnaA = celdas[1].textContent;
+            const url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQme6n6jncAPfDZiEyOW8zEbyiRCWioQv49ZcHGVfLI8ZgNbiniEINrzgRtZ7YJXg/pubhtml?gid=1917080272&single=true';
 
-                            if (idInput === idColumnaA) {
-                                resultadosEncontrados = true;
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const tabla = doc.querySelector('table');
 
-                                if (!infoColumnasMostrada) {
-                                    const infoColumna2 = document.createElement('span');
-                                    infoColumna2.textContent = celdas[2].textContent;
-                                    infoColumnasDiv.appendChild(infoColumna2);
+                    if (tabla) {
+                        let resultadosEncontrados = false;
+                        let infoColumnasMostrada = false;
 
-                                    const infoColumna3 = document.createElement('span');
-                                    infoColumna3.textContent = celdas[3].textContent;
-                                    infoColumnasDiv.appendChild(infoColumna3);
+                        tabla.querySelectorAll('tr').forEach((fila, rowIndex) => {
+                            if (rowIndex > 0) {
+                                const celdas = fila.querySelectorAll('td, th');
+                                if (celdas.length > 5) {
+                                    const idColumnaA = celdas[1].textContent;
 
-                                    infoColumnasMostrada = true;
-                                }
+                                    if (idInput === idColumnaA) {
+                                        resultadosEncontrados = true;
 
-                                if (!resultadoDiv.querySelector('table')) {
-                                    const nuevaTabla = document.createElement('table');
-                                    resultadoDiv.appendChild(nuevaTabla);
-                                    // Add table headers (optional but recommended)
-                                    const headerRow = nuevaTabla.insertRow();
-                                    for (let i = 4; i <= 10; i++) { // Adjust range as needed
-                                        const headerCell = headerRow.insertCell();
-                                        // You'll need to get the actual header text from the table
-                                        headerCell.textContent = tabla.querySelector(`tr:nth-child(1) td:nth-child(${i})`).textContent; // Example
+                                        if (!infoColumnasMostrada) {
+                                            const infoColumna2 = document.createElement('span');
+                                            infoColumna2.textContent = celdas[2].textContent;
+                                            infoColumnasDiv.appendChild(infoColumna2);
+
+                                            const infoColumna3 = document.createElement('span');
+                                            infoColumna3.textContent = celdas[3].textContent;
+                                            infoColumnasDiv.appendChild(infoColumna3);
+
+                                            infoColumnasMostrada = true;
+                                        }
+
+                                        if (!resultadoDiv.querySelector('table')) {
+                                            const nuevaTabla = document.createElement('table');
+                                            resultadoDiv.appendChild(nuevaTabla);
+
+                                            const headerRow = nuevaTabla.insertRow();
+                                            for (let i = 4; i <= 10; i++) {
+                                                const headerCell = headerRow.insertCell();
+                                                headerCell.textContent = tabla.querySelector(`tr:nth-child(1) td:nth-child(${i})`).textContent;
+                                            }
+                                        }
+
+                                        const nuevaFila = resultadoDiv.querySelector('table').insertRow();
+                                        let cellIndex = 0;
+
+                                        const celdaColumna4 = nuevaFila.insertCell(cellIndex++);
+                                        celdaColumna4.textContent = "Servicio Socoal: " + celdas[4].textContent;
+
+                                        const celdaColumna5 = nuevaFila.insertCell(cellIndex++);
+                                        celdaColumna5.textContent = "Eventos de EPA: " + celdas[5].textContent;
+
+                                        const celdaColumna6 = nuevaFila.insertCell(cellIndex++);
+                                        celdaColumna6.textContent = "Inglés: " + celdas[9].textContent;
+
+                                        const celdaColumna7 = nuevaFila.insertCell(cellIndex++);
+                                        celdaColumna7.textContent = "EPA: " + celdas[8].textContent;
+
+                                        const celdaColumna8 = nuevaFila.insertCell(cellIndex++);
+                                        celdaColumna8.textContent = "Servicio Social: " + celdas[10].textContent;
                                     }
                                 }
-
-                                const nuevaFila = resultadoDiv.querySelector('table').insertRow();
-                                let cellIndex = 0; // Keep track of the cell index
-
-                                const celdaColumna4 = nuevaFila.insertCell(cellIndex++); // Increment cellIndex
-                                celdaColumna4.textContent = "Servicio Socoal: " + celdas[4].textContent;
-
-                                const celdaColumna5 = nuevaFila.insertCell(cellIndex++); // Increment cellIndex
-                                celdaColumna5.textContent = "Eventos de EPA: " + celdas[5].textContent;
-
-                                const celdaColumna6 = nuevaFila.insertCell(cellIndex++); // Increment cellIndex
-                                celdaColumna6.textContent = "Inglés: " + celdas[9].textContent;
-
-                                const celdaColumna7 = nuevaFila.insertCell(cellIndex++); // Increment cellIndex
-                                celdaColumna7.textContent = "EPA: " + celdas[8].textContent;
-
-                                const celdaColumna8 = nuevaFila.insertCell(cellIndex++); // Increment cellIndex
-                                celdaColumna8.textContent = "Servicio Social: " + celdas[10].textContent;
                             }
-                        }
-                    }
-                });
+                        });
 
-                // ... (Rest of your existing code) ...
-            } else {
-                // ...
-            }
-        })
-        // ... (Rest of your existing code) ...
-    }
+                        if (!resultadosEncontrados) {
+                            resultadoDiv.innerHTML = '<p>No se encontraron resultados para el ID ingresado.</p>';
+                        }
+
+                    } else {
+                        resultadoDiv.textContent = 'No se encontró la tabla en la hoja de cálculo.';
+                    }
+                })
+                .catch(error => {
+                    resultadoDiv.textContent = 'Error al cargar la hoja de cálculo: ' + error;
+                });
+        }
     </script>
 </body>
 
