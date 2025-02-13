@@ -118,10 +118,57 @@
             font-size:3vw;
             font-weight: bold;
             }
+    footer {
+    		font-size:8px;
+            background-color: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 960px;
+            margin: 0 auto;
+        }
+
+        .footer-content p {
+            margin-bottom: 10px;
+        }
+
+        .footer-content nav a {
+            margin: 0 10px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .social-media {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .social-media li {
+            display: inline-block;
+            margin: 0 5px;
+        }
+
+        .social-media img {
+            width: 20px;
+            height: 20px;
+        }
+        .footerinfo{
+        font-size:1.5vw;
+        }
+        .img-UP {
+            background-color: red;
+        }
     </style>
 </head>
 
 <body>
+	<div class="img-UP">
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fblog.hardpeach.com%2Fasi-ha-sido-la-evolucion-del-logo-de-apple-desde-1976%2F&psig=AOvVaw2zyqJfdXmCaz7KykrVHx2e&ust=1739560555150000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCJi_mpquwYsDFQAAAAAdAAAAABAQ" alt="Apple Logo">
+    </div>
+
     <h1>Status Requisitos alumnos 4+1</h1>
     <input type="text" id="idInput" placeholder="Ingresa el ID">
     <button onclick="buscarID()" style="margin-top:3%; margin-bottom:3%;">Buscar</button>
@@ -214,26 +261,32 @@
         }
 
     </script>
-    <center>
-<p class="small">Este contenido es de caracter <b class="redd">INFORMATIVO</b>. Si necesitas alcaraciones deberás referirte al siguiente directorio:</p>
-            <p class="info">DIRECTORIO DE ÁREAS RESPONSABLES</p>
-
-<ol><b>Inglés</b>
-	<lu>Ing. Emilio Flores(<a>efburkle@up.edu.mx</a>)</lu>
-	<lu>Mail directo de CLUP: Mtro. Mario Castillo (<a>mcastill@up.edu.mx</a>)</lu>
-</ol>
-
-<ol><b>Servicio Social</b>
-	<lu>Ing. Mariana Villanueva(<a>mvillanu@up.edu.mx</a>)</lu>
-	<lu>Mail directo de Compromiso Social(<a>ssocialup@up.edu.mx</a>)</lu>
-</ol>
-
-<ol><b>Escuela Práctica Avanzada</b>
-	<lu>Ing. Brenda Navarro(<a>bnavarro@up.edu.mx</a>)</li>
-    <lu>Escuela Práctica(<a>escuela-practica@up.edu.mx</a>)</li>
-</ol>
-</center>
-            
+<footer>
+        <div class="footer-content">
+        <p class="footerinfo">Este status es INFORMATIVO. Si tienes dudas o crees que hay un error, te sugiero buscar directo al responsable de cada tema:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>INGLÉS</th>
+                        <th>SERVICIO SOCIAL</th>
+                        <th>EPA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ing. Emilio Flores(<a>efburkle@up.edu.mx</a>)</td>
+                        <td>Ing. Mariana Villanueva(<a>mvillanu@up.edu.mx</a>)</td>
+                        <td>Ing. Brenda Navarro(<a>bnavarro@up.edu.mx</a>)</td>
+                    </tr>
+                    <tr>
+                        <td>Mail directo de CLUP: Mtro. Mario Castillo (<a>mcastill@up.edu.mx</a>)</td>
+                        <td>Mail directo de Compromiso Social(<a>ssocialup@up.edu.mx</a>)</td>
+                        <td>Escuela Práctica(<a>escuela-practica@up.edu.mx</a>)</td>
+                    </tr>
+                     </tbody>
+            </table>
+            </div>
+    </footer>         
 
 </body>
 
