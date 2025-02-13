@@ -159,14 +159,36 @@
         font-size:1.5vw;
         }
         .img-UP {
-            background-color: red;
+            width:4vw;
+        }
+	    .logo-container { /* Container for the logo */
+            display: inline-block; /* Or block, depending on your layout */
+        }
+
+        .logo {
+            width: 200px; /* Default width for larger screens */
+            height: auto; /* Maintain aspect ratio */
+        }
+
+        /* Media query for smaller screens (e.g., mobile) */
+        @media (max-width: 768px) { /* Adjust breakpoint as needed */
+            .logo {
+                width: 150px; /* Smaller width for mobile */
+            }
+        }
+
+        /* Example for even smaller screens */
+        @media (max-width: 400px) {
+            .logo {
+                width: 100px;
+            }
         }
     </style>
 </head>
 
 <body>
-	<div class="img-UP">
-        <img src="https://raw.githubusercontent.com/Iankli/StatusUPPOS/refs/heads/main/LogoPos-10.png" alt="Posgrados de Ingeniería">
+	<div class="logo-container">
+        <img class="logo" src="https://raw.githubusercontent.com/Iankli/StatusUPPOS/refs/heads/main/LogoPos-10.png" alt="Posgrados de Ingeniería">
     </div>
 
     <h1>Status Requisitos alumnos 4+1</h1>
