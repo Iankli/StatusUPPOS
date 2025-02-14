@@ -119,7 +119,7 @@
             font-weight: bold;
             }
     footer {
-    		font-size:1vw;
+    		font-size:.8vw;
             background-color: #f0f0f0;
             padding: 20px;
             text-align: center;
@@ -155,12 +155,11 @@
             width: 20px;
             height: 20px;
         }
-        .footerinfo{
-        font-size:1vw;
-        }
+     
         .img-UP {
             width:4vw;
         }
+        
 	    .logo-container { /* Container for the logo */
             display: inline-block; /* Or block, depending on your layout */
         }
@@ -182,6 +181,12 @@
             .logo {
                 width: 100px;
             }
+            
+        @media (max-width: 768px) { /* Media query para pantallas pequeñas (móviles) */
+  			footer {
+    			font-size: 8px; /* Tamaño de fuente más pequeño para móviles */
+  			}
+            
         }
     </style>
 </head>
@@ -285,7 +290,7 @@
     </script>
 <footer>
         <div class="footer-content">
-        <p class="footerinfo">Este status es INFORMATIVO. Si tienes dudas o crees que hay un error, te sugiero buscar directo al responsable de cada tema:</p>
+        <p>Este status es INFORMATIVO. Si tienes dudas o crees que hay un error, te sugiero buscar directo al responsable de cada tema:</p>
             <table>
                 <thead>
                     <tr>
