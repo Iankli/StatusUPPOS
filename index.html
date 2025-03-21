@@ -233,7 +233,7 @@
                         tabla.querySelectorAll('tr').forEach((fila, rowIndex) => {
                             if (rowIndex > 0) {
                                 const celdas = fila.querySelectorAll('td, th');
-                                if (celdas.length > 9) {
+                                if (celdas.length > 5) {
                                     const idColumnaA = celdas[1].textContent;
 
                                     if (idInput === idColumnaA) {
@@ -262,10 +262,10 @@
                                         let cellIndex = 0;
 
                                         const celdaColumna6 = nuevaFila.insertCell(cellIndex++);
-                                        celdaColumna6.textContent = "EPA: " + celdas[9].textContent
+                                        celdaColumna6.textContent = "Inglés: " + celdas[9].textContent
 
                                         const celdaColumna7 = nuevaFila.insertCell(cellIndex++);
-                                        celdaColumna7.textContent = "Ingles: " + celdas[8].textContent;
+                                        celdaColumna7.textContent = "EPA: " + celdas[8].textContent;
 
                                         const celdaColumna8 = nuevaFila.insertCell(cellIndex++);
                                         celdaColumna8.textContent = "Servicio Social: " + celdas[10].textContent;
